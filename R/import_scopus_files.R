@@ -132,7 +132,7 @@ import_scopus_files <- function(files_directory) {
 
   iddftmp <- dplyr::left_join(iddf, tmp, by = c("SO" = "old_so"))
   iddftmp$SO[!is.na(iddftmp$new_so)] <- iddftmp$new_so[!is.na(iddftmp$new_so)]
-  iddftmp$CR_new <- paste(iddftmp$AU,iddftmp$PY,iddftmp$SO,iddftmp$VL, iddftmp$BP, sep = ", ")
+  iddftmp$CR_new <- paste(iddftmp$AU,iddftmp$PY,iddftmp$TI, iddftmp$SO,iddftmp$VL, iddftmp$BP, sep = ", ")
   tmp <- group_by(iddftmp, UT) %>%
     summarise(CR = paste(CR_new, collapse = '; '))
   dfsci <- select(dfsci, -CR)
